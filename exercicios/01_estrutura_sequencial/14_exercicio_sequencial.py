@@ -14,3 +14,17 @@ Seu programa deve:
     c. Se houver excesso, calcular e exibir o valor da multa que o pescador deve
         pagar.
 """
+
+limite = 50  # kilos de peixe por dia
+multa_kg = 4  # reais por kilo excedente
+
+peso_peixes = float(input("Peso dos peixes em kg: "))
+
+excesso = peso_peixes - limite
+excesso = max(0, excesso)
+
+multa_total = excesso * multa_kg
+
+print(f"Total pescado: {peso_peixes} kg")
+print(f"Excesso: {excesso} kg")
+print(f"Multa: R$ {multa_total:.2f}")
