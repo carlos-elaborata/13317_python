@@ -7,3 +7,8 @@ adicionada ao final da lista.
 Após a adição, o programa deve remover a segunda fruta da lista original.
 Finalmente, exiba a lista modificada ao usuário, demonstrando as alterações feitas.
 """
+
+frutas = ["Maça", "Banana", "Cereja", "Pitaya", "Amora"]
+frutas.append(input("Digite o nome da 6ª fruta: "))
+frutas.pop(1)
+print(frutas)

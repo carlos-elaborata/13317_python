@@ -7,3 +7,13 @@ O programa deve calcular a média das notas e adicionar essa média ao dicionár
 chave "Média".
 Após isso, exiba o dicionário atualizado.
 """
+
+estudante = {"nome": "Lucas", "notas": [85, 90, 78, 92, 88], "idade": 20}
+
+notas = estudante["notas"]
+media_notas = sum(notas) / len(notas)
+
+# estudante["media"] = media_notas
+estudante.update({"media": media_notas})
+
+print(estudante)

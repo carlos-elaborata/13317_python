@@ -8,3 +8,8 @@ original.
 Após a substituição, o programa deve exibir a lista atualizada, mostrando a alteração
 feita.
 """
+
+cores = ["Azul", "Vermelho", "Verde", "Amarelo", "Preto"]
+nova_cor = input("Digite uma nova cor: ")
+cores[2] = nova_cor
+print(cores)

@@ -7,3 +7,10 @@ O programa deve adicionar um novo par de chave-valor que represente o país de o
 sendo a chave "País" e o valor "Brasil".
 Exiba o dicionário após a adição.
 """
+
+pessoa = {"nome": "Ana", "idade": 25, "profissao": "Engenheira"}
+
+# pessoa["pais"] = "Brasil"
+pessoa.update({"pais": "Brasil"})
+
+print(pessoa)

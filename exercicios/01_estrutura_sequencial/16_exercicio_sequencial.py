@@ -21,7 +21,7 @@ area = float(input("Digite o tamanho da área a ser pintada (m²): "))
 # Calcula o total de litros de tinta necessários
 litros_necessarios = area / cobertura_tinta
 
-# Calcula a quantidade de latas necessárias
+# Calcula a quantidade de latas necessárias arredondando para cima
 latas_necessarias = math.ceil(litros_necessarios / lata_litros)
 
 # Calcula o custo total baseado no número de latas necessárias
