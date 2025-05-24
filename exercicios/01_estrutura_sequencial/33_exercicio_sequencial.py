@@ -6,3 +6,7 @@ Crie um programa que possua um dicionário com as informações "Nome": "Ana", "
 O programa deve verificar se a chave "Idade" está presente no dicionário e exibir uma
 mensagem confirmando sua presença.
 """
+
+pessoa = {"nome": "Ana", "idade": 25, "profissao": "Engenheira", "pais": "Brasil"}
+
+print("idade" in pessoa)

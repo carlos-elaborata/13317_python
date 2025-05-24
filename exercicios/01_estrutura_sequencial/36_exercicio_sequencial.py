@@ -9,3 +9,10 @@ O programa deve combinar esses dois dicionários em uma única estrutura, utiliz
 chaves "Livro_1" e "Livro_2" para cada livro, respectivamente, e exibir a estrutura
 combinada.
 """
+
+livro_1 = {"titulo": "1984", "autor": "George Orwell", "ano": 1949}
+livro_2 = {"titulo": "Brave New World", "autor": "Aldous Huxley", "ano": 1932}
+
+biblioteca = {"livro_1": livro_1, "livro_2": livro_2}
+
+print(biblioteca)
