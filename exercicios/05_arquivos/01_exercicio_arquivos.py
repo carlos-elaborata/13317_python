@@ -25,3 +25,41 @@ O arquivo de saída deve ser no formato:
     85.345.1.2
     192.168.0.256
 """
+
+
+def validar_ip(ip: str):
+    numeros = ip.split(".")
+
+    if len(numeros) != 4:
+        return False
+
+    for numero in numeros:
+        numero = numero.strip()
+
+        if not numero.isdigit() or int(numero) < 0 or int(numero) > 255:
+            return False
+
+    return True
+
+
+entrada = open("01_ips.txt", "r")
+ips = entrada.readlines()
+entrada.close()
+
+validos = []
+invalidos = []
+
+for ip in ips:
+    if validar_ip(ip):
+        validos.append(ip)
+    else:
+        invalidos.append(ip)
+
+saida = open("01_ips_relatorio.txt", "w")
+saida.write("[Endereços válidos:]\n")
+saida.writelines(validos)
+saida.write("\n[Endereços inválidos:]\ns")
+saida.writelines(invalidos)
+saida.close()
+
+print("Relatório gerado com sucesso.")
