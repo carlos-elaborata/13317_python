@@ -26,6 +26,8 @@ O arquivo de saída deve ser no formato:
     192.168.0.256
 """
 
+import pathlib
+
 
 def validar_ip(ip: str):
     numeros = ip.split(".")
@@ -42,7 +44,9 @@ def validar_ip(ip: str):
     return True
 
 
-entrada = open("01_ips.txt", "r")
+BASE_DIR = pathlib.Path(__file__).parent
+
+entrada = open(BASE_DIR / "arquivos" / "01_ips.txt", "r")
 ips = entrada.readlines()
 entrada.close()
 
@@ -55,7 +59,7 @@ for ip in ips:
     else:
         invalidos.append(ip)
 
-saida = open("01_ips_relatorio.txt", "w")
+saida = open(BASE_DIR / "arquivos" / "01_ips_relatorio.txt", "w")
 saida.write("[Endereços válidos:]\n")
 saida.writelines(validos)
 saida.write("\n[Endereços inválidos:]\ns")
