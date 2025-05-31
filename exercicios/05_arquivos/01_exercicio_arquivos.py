@@ -44,11 +44,10 @@ def validar_ip(ip: str):
     return True
 
 
-BASE_DIR = pathlib.Path(__file__).parent
+BASE_DIR = pathlib.Path(__file__).parent / "arquivos"
 
-entrada = open(BASE_DIR / "arquivos" / "01_ips.txt", "r")
-ips = entrada.readlines()
-entrada.close()
+with open(BASE_DIR / "01_ips.txt", "r", encoding="utf8") as entrada:
+    ips = entrada.readlines()
 
 validos = []
 invalidos = []
@@ -59,11 +58,10 @@ for ip in ips:
     else:
         invalidos.append(ip)
 
-saida = open(BASE_DIR / "arquivos" / "01_ips_relatorio.txt", "w")
-saida.write("[Endereços válidos:]\n")
-saida.writelines(validos)
-saida.write("\n[Endereços inválidos:]\ns")
-saida.writelines(invalidos)
-saida.close()
+with open(BASE_DIR / "01_ips_relatorio.txt", "w", encoding="utf8") as saida:
+    saida.write("[Endereços válidos:]\n")
+    saida.writelines(validos)
+    saida.write("\n[Endereços inválidos:]\ns")
+    saida.writelines(invalidos)
 
 print("Relatório gerado com sucesso.")

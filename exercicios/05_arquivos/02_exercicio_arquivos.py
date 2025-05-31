@@ -41,9 +41,8 @@ def calcular_porcentagem_uso(espaco_usuario, espaco_total):
 
 BASE_DIR = pathlib.Path(__file__).parent
 
-entrada = open(BASE_DIR / "arquivos" / "02_usuarios.txt", "r", encoding="utf8")
-linhas = entrada.readlines()
-entrada.close()
+with open(BASE_DIR / "arquivos" / "02_usuarios.txt", "r", encoding="utf8") as entrada:
+    linhas = entrada.readlines()
 
 usuarios = []
 total_espaco_ocupado = 0
@@ -56,33 +55,37 @@ for linha in linhas:
 
 usuarios.sort(key=lambda u: u[1], reverse=True)
 
-relatorio = open(
+with open(
     BASE_DIR / "arquivos" / "02_usuarios_relatorio.txt",
     "w",
     encoding="utf8",
-)
-relatorio.write("ACME Inc.\tUso do espaço em disco pelos usuários\n")
-relatorio.write("-" * 49 + "\n")
-txt_nr = "Nr."
-txt_usuario = "Usuário"
-txt_espaco = "Espaço utilizado"
-txt_prc_uso = "% do uso"
-relatorio.write(f"{txt_nr:<5}{txt_usuario:<15}{txt_espaco:<20}{txt_prc_uso:<8}\n\n")
-for indice, (usuario, espaco) in enumerate(usuarios, 1):
-    espaco_mb = bytes_para_megabytes(espaco)
-    prc_ocupado = calcular_porcentagem_uso(espaco, total_espaco_ocupado)
+) as relatorio:
+    relatorio.write("ACME Inc.\tUso do espaço em disco pelos usuários\n")
+    relatorio.write("-" * 49 + "\n")
+    txt_nr = "Nr."
+    txt_usuario = "Usuário"
+    txt_espaco = "Espaço utilizado"
+    txt_prc_uso = "% do uso"
+    relatorio.write(f"{txt_nr:<5}{txt_usuario:<15}{txt_espaco:<20}{txt_prc_uso:<8}\n\n")
+    for indice, (usuario, espaco) in enumerate(usuarios, 1):
+        espaco_mb = bytes_para_megabytes(espaco)
+        prc_ocupado = calcular_porcentagem_uso(espaco, total_espaco_ocupado)
 
-    txt_espaco_mb = f"{espaco_mb:.2f} MB".replace(".", ",")
-    txt_prc_uso = f"{prc_ocupado:.2f}%".replace(".", ",")
+        txt_espaco_mb = f"{espaco_mb:.2f} MB".replace(".", ",")
+        txt_prc_uso = f"{prc_ocupado:.2f}%".replace(".", ",")
 
-    relatorio.write(f"{indice:<5}{usuario:<15}{txt_espaco_mb:<20}{txt_prc_uso:<8}\n")
+        relatorio.write(
+            f"{indice:<5}{usuario:<15}{txt_espaco_mb:<20}{txt_prc_uso:<8}\n"
+        )
 
-espaco_total_mb = bytes_para_megabytes(total_espaco_ocupado)
-espaco_medio_mb = espaco_total_mb / len(usuarios)
+    espaco_total_mb = bytes_para_megabytes(total_espaco_ocupado)
+    espaco_medio_mb = espaco_total_mb / len(usuarios)
 
-relatorio.write(f"\nEspaço total ocupado: {espaco_total_mb:.2f} MB".replace(".", ","))
-relatorio.write(f"\nEspaço médio ocupado: {espaco_medio_mb:.2f} MB".replace(".", ","))
-
-relatorio.close()
+    relatorio.write(
+        f"\nEspaço total ocupado: {espaco_total_mb:.2f} MB".replace(".", ",")
+    )
+    relatorio.write(
+        f"\nEspaço médio ocupado: {espaco_medio_mb:.2f} MB".replace(".", ",")
+    )
 
 print("Relatório gerado com sucesso.")
